@@ -14,10 +14,7 @@ const Header = () => {
           <Ionicons name="search" size={18} color={blue}/>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.8} style={styles.buttonStyles}>
-          <Ionicons name="person" size={18} color={blue}/>
-        </TouchableOpacity>
-           <TouchableOpacity activeOpacity={0.8}>
-          <Ionicons name="menu" size={18} color={blue}/>
+          <Ionicons name="cart" size={18} color={blue}/>
         </TouchableOpacity>
       </View>
     </View>
