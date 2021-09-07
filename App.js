@@ -16,11 +16,13 @@ import { Ionicons } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="Profile"   
       tabBarOptions={{
        activeTintColor: white,
        inactiveTintColor: 'lightgray',
