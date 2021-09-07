@@ -17,6 +17,16 @@ const Phones = () => {
         <PhoneCard/>
       </View>
       <View style={styles.cardsContainer}>
+        <PhoneCard/>
+        <PhoneCard/>
+        <PhoneCard/>
+      </View>
+      <View style={styles.cardsContainer}>
+        <PhoneCard/>
+        <PhoneCard/>
+        <PhoneCard/>
+      </View>
+      <View style={styles.cardsContainer}>
           <TouchableOpacity activeOpacity={0.8} style={styles.pageButton}>
             <Text style={{color: white}}>1</Text>
           </TouchableOpacity>

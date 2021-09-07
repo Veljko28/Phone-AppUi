@@ -8,8 +8,17 @@ import { IconButton } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 import userImage from '../../assets/user.png';
 
+import Listings from './ProfileComps/Listings';
+import Reviews from './ProfileComps/Reviews';
+import WishList from './ProfileComps/WishList';
 
 const Profile = () => {
+
+  const [page,changePage] = React.useState("Listings");
+
+  const pagination = (value: string) => {
+    changePage(value);
+  }  
 
   return (
   <ScrollView style={{flex: 1, backgroundColor: '#fff'}}>
@@ -47,9 +56,27 @@ const Profile = () => {
                   style={{ color: '#f9ff00' }} 
                   size={20}
                 />
-                </Text>
+             </Text>
           </View>
      </View>
+     <View style={styles.buttonsContainer}>
+
+        <TouchableOpacity activeOpacity={0.8}>
+          <Text style={styles.button} onPress={e => pagination("Listings")}>Listings</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={0.8}>
+          <Text style={styles.button} onPress={e => pagination("Reviews")}>Reviews</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={0.8}>
+          <Text style={styles.button} onPress={e => pagination("Wish List")}>Wish List</Text>
+        </TouchableOpacity>
+        
+     </View>
+
+      {page === "Listings" ? <Listings/> : page === "Reviews" ? <Reviews/> : <WishList/>}
+
     </ScrollView>
   );
 }  
@@ -66,6 +93,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff'
    },
+   buttonsContainer: {
+     flex: 1,
+     flexDirection: 'row',
+     justifyContent: 'space-around',
+     marginTop: 10
+   },
+   button: {
+     color: blue,
+     fontSize: 15
+   }
 });
 
 export default Profile;
