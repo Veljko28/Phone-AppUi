@@ -4,6 +4,8 @@ import Constants from 'expo-constants';
 import Header from '../Header';
 import {white} from '../../constants/CustomColors';
 import PhoneCard from '../PhoneCard';
+import CategoryCircles from '../FrontPage/CategoryCircles';
+import CarouselMain from '../FrontPage/CarouselMain';
 
 
 
@@ -11,7 +13,7 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Header/> 
-      <Text>Home Page</Text>
+      <CategoryCircles/>
     </View>
   );
 }
