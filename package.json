@@ -19,9 +19,10 @@
     "react-native-paper": "3.6.0",
     "react-native-screens": "~3.4.0",
     "@react-navigation/native": "6.0.0",
+    "react-native-snap-carousel": "*",
     "@react-navigation/bottom-tabs": "*",
     "react-native-safe-area-context": "3.2.0",
-    "react-native-snap-carousel": "*"
+    "react-native-ratings": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
