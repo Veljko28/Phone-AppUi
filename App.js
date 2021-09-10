@@ -6,6 +6,11 @@ import Phones from './components/Tabs/Phones';
 import Bids from './components/Tabs/Bids';
 import Profile from './components/Tabs/Profile';
 import { blue, white } from './constants/CustomColors';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
+
+import Register from './components/UserControl/Register';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
@@ -17,12 +22,14 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
 
+    
   return (
+  <Provider store={store}>
     <NavigationContainer>
       <Tab.Navigator screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Profile"   
+      initialRouteName="Home"   
       tabBarOptions={{
        activeTintColor: white,
        inactiveTintColor: 'lightgray',
@@ -30,11 +37,12 @@ export default function App() {
        inactiveBackgroundColor: blue,
            style: {
                  backgroundColor: blue,
-                 paddingBottom: 3
+                 paddingBottom: 3,
+                 display: 'none'
            }
         }}
       >
-        <Tab.Screen name="Home" component={Home} 
+        <Tab.Screen name="Home" component={Register} 
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: () => (
@@ -76,6 +84,7 @@ export default function App() {
 
       </Tab.Navigator>
     </NavigationContainer>
+   </Provider>
   );
 }
 
