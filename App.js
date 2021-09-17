@@ -16,73 +16,21 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
-
+import Main from './components/Main';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
 
+  const [loggedIn, changeLoggedIn] = React.useState(true);
+
     
   return (
   <Provider store={store}>
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{
-        headerShown: false,
-      }}
-      initialRouteName="Home"   
-      tabBarOptions={{
-       activeTintColor: white,
-       inactiveTintColor: 'lightgray',
-       activeBackgroundColor: blue,
-       inactiveBackgroundColor: blue,
-           style: {
-                 backgroundColor: blue,
-                 paddingBottom: 3,
-                 display: 'none'
-           }
-        }}
-      >
-        <Tab.Screen name="Home" component={Register} 
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: () => (
-            <Ionicons name="home" size={20} color={white} />
-          ),
-        }}
-        />
-        <Tab.Screen name="Phones" component={Phones} 
-        options={{
-          tabBarLabel: 'Phones',
-          tabBarIcon: () => (
-            <Ionicons 
-            name="phone-portrait" size={20} color={white} />
-          ),
-        }}
-        />
-
-         <Tab.Screen name="Bids" component={Bids} 
-        options={{
-          tabBarLabel: 'Bids',
-          tabBarIcon: () => (
-            <Ionicons 
-            name="time" size={20} color={white} />
-          ),
-        }}
-        />
-
-        <Tab.Screen name="Profile" component={Profile} 
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: () => (
-            <Ionicons 
-            name="person" size={20} color={white} />
-          ),
-        }}
-        />
-
-
-
-      </Tab.Navigator>
+  {loggedIn ? <Main />
+  : <Register/>
+  }
     </NavigationContainer>
    </Provider>
   );
