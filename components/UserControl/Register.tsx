@@ -4,7 +4,7 @@ import logo from '../../assets/logo.png';
 import {blue, white} from '../../constants/CustomColors';
 
 
-const Register = ({ navigation: { navigate, dispatch, state } }) => {
+const Register = () => {
 
   const [form, changeForm] = React.useState({username: "",email: "", 
   password: "", confirmPassword: "", rememberMe: false});
@@ -12,25 +12,30 @@ const Register = ({ navigation: { navigate, dispatch, state } }) => {
   return (
     <View style={styles.container}>
         <Image source={logo} resizeMode="contain" style={styles.logoStyles}/>
+        
         <TextInput placeholder="Username" value={form.username}
         onChangeText={text => changeForm({...form, username: text})}
         style={styles.textField}/>
+
         <TextInput placeholder="Email" value={form.email}
         onChangeText={text => changeForm({...form, email: text})}
         style={styles.textField}/>
+
         <TextInput placeholder="Password" value={form.password}
         onChangeText={text => changeForm({...form, password: text})}
         style={styles.textField}/>
+
         <TextInput placeholder="Confirm Password" value={form.confirmPassword}
         onChangeText={text => changeForm({...form, confirmPassword: text})}
         style={styles.textField}/>
-       <TouchableOpacity activeOpacity={0.8} style={styles.submit}>Register</TouchableOpacity>
+
+       <TouchableOpacity activeOpacity={0.8} style={styles.submit}><Text style={styles.submitText}>Register</Text></TouchableOpacity>
        <Text style={styles.register}>Already have an account?
-       <Text style={{color: '#000'}} onPress={() => navigate("Profile")}> Login !</Text></Text>
+       <Text style={{color: '#000'}}> Login !</Text></Text>
     </View>
   )
 }
-
+ 
 const styles = StyleSheet.create({
   logoStyles: {
     width: 200,
@@ -53,13 +58,15 @@ const styles = StyleSheet.create({
   submit: {
     backgroundColor: blue,
     width: 200,
-    color: white,
     padding: 7,
-    fontSize: 15,
-    textAlign: 'center',
     borderRadius: 5,
     fontFamily: "Arial",
     marginTop: 5
+  },
+  submitText: {
+    color: white,
+    textAlign: 'center',
+    fontSize: 15
   },
   register: {
     margin: 10,
