@@ -8,10 +8,10 @@ const MapReview = (props: ReviewItem) => {
   return (
     <View
       style={{ borderBottomWidth: 2, borderBottomColor: '#eee', padding: 5 }}>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
+      <Text style={{ flex: 1, flexDirection: 'row' }}>
         <Text style={styles.header}>
-          <View style={{ color: blue }}>{props.userName}</View> on{' '}
-          <View style={{ color: blue }}>{props.date}</View>
+          <Text style={{ color: blue }}>{props.userName}</Text> on{' '}
+          <Text style={{ color: blue }}>{props.date}</Text>
         </Text>
         <Rating
           readonly={true}
@@ -21,7 +21,7 @@ const MapReview = (props: ReviewItem) => {
           startingValue={props.rating}
           style={{ paddingVertical: 10 }}
         />
-      </View>
+      </Text>
       <Text style={{ marginLeft: 10, color: '#999' }}>{props.description}</Text>
     </View>
   );
