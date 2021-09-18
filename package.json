@@ -24,8 +24,10 @@
     "react-native-check-box": "*",
     "@react-navigation/native": "6.0.0",
     "react-native-snap-carousel": "*",
+    "react-native-flatlist-slider": "*",
     "@react-navigation/bottom-tabs": "*",
-    "react-native-safe-area-context": "3.2.0"
+    "react-native-safe-area-context": "3.2.0",
+    "react-native-image-slider-show": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
