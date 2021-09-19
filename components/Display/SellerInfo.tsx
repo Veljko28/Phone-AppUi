@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: blue,
     padding: 5,
-    marginTop: 5,
+    marginTop: 20,
     borderRadius: 15
   }
 });

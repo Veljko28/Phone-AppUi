@@ -5,10 +5,10 @@ import { blue, green } from '../constants/CustomColors';
 import { Ionicons } from '@expo/vector-icons';
 
 
-const PhoneCard = () => {
+const PhoneCard = ({onPress} : {onPress : () => any}) => {
 
   return (
-    <TouchableOpacity activeOpacity={0.8} style={styles.card}>
+    <TouchableOpacity activeOpacity={0.8} style={styles.card} onPress={() => onPress()}>
       <Image source={phone} resizeMode="contain" style={styles.phoneImage}/>
       <Text style={{marginTop: 5, color: blue, textAlign: 'center'}}>Pixel 2</Text>
       <Text style={{marginTop: 5, color: green, textAlign: 'center'}}>350$</Text>

@@ -17,7 +17,7 @@ const PhoneContainer = ({phones, title}: {phones: Phone[], title: string}) => {
       </View>
     </View>
   );
-}
+} 
 
 const styles = StyleSheet.create({
   container: {
