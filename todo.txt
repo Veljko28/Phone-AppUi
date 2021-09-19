@@ -5,6 +5,9 @@ user listings✅
 user reviews ✅
 user wish list ✅
 header comp ✅
+register ✅
+login ✅
+loading component ✅
 
 
 image display carousel ✅
@@ -12,10 +15,11 @@ phone info  ✅
 seller info ✅
 colored line ✅
 related phones ✅
-stack navigatior
+stack navigatior ✅
 search page
 cart page
-image scroll circles
+image scroll circles ✅
+modal pop-over ✅
 settings / edit profile
 user profile info
 redux add to cart functionality
@@ -23,4 +27,6 @@ adding phones
 adding bids
 bid cards
 review text error fix
+phone display header ✅
+brand images on category circles ✅
 

@@ -26,8 +26,11 @@
     "react-native-snap-carousel": "*",
     "react-native-flatlist-slider": "*",
     "@react-navigation/bottom-tabs": "*",
+    "react-native-image-slider-show": "*",
     "react-native-safe-area-context": "3.2.0",
-    "react-native-image-slider-show": "*"
+    "@react-navigation/stack": "*",
+    "react-native-gesture-handler": "~1.10.2",
+    "react-native-modal": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
