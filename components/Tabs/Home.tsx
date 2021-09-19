@@ -1,32 +1,26 @@
 import React from 'react';
-import {View, Text,  StyleSheet} from 'react-native';
-import Constants from 'expo-constants';
-import Header from '../Header';
-import {white} from '../../constants/CustomColors';
-import PhoneCard from '../PhoneCard';
-import CategoryCircles from '../FrontPage/CategoryCircles';
-import CarouselMain from '../FrontPage/CarouselMain';
-import {useSelector} from 'react-redux';
-import {State} from '../../redux/reduxTypes';
+import { createStackNavigator } from '@react-navigation/stack';
 
+import FrontPage from './HomeStack/FrontPage';
+import Search from './HomeStack/Search';
+import Cart from './HomeStack/Cart';
+
+
+const Stack = createStackNavigator();
 
 
 const Home = () => {
 
   return (
-    <View style={styles.container}>
-      <Header/> 
-      <CategoryCircles/>
-    </View>
+    <Stack.Navigator  
+    screenOptions={{
+      headerShown: false
+    }}>
+      <Stack.Screen name="Home" component={FrontPage} />
+      <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="Cart" component={Cart} />
+    </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#fff',
-  },
-});
 
 export default Home;
