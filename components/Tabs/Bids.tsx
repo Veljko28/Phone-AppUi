@@ -1,5 +1,5 @@
 import React from 'react';
-import { View ,Text, StyleSheet } from "react-native";
+import { View ,Text, StyleSheet, StatusBar } from "react-native";
 import Header from '../Header';
 import Constants from 'expo-constants';
 import {white} from '../../constants/CustomColors';
@@ -9,6 +9,7 @@ const Bids = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content"/>
       <Header/> 
       <Text>Bids</Text>
     </View>

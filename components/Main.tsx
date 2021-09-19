@@ -7,8 +7,8 @@ import Home from './Tabs/Home';
 import Phones from './Tabs/Phones';
 import Bids from './Tabs/Bids';
 import Profile from './Tabs/Profile';
+import Loading from './Loading';
 
-import PhoneDisplay from './PhoneDisplay';
 
 
 
@@ -20,7 +20,7 @@ const Tab = createBottomTabNavigator();
   <Tab.Navigator screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Home"   
+        initialRouteName="Profile"   
         tabBarOptions={{
         activeTintColor: white,
         inactiveTintColor: 'lightgray',
@@ -33,7 +33,7 @@ const Tab = createBottomTabNavigator();
             }
           }}
         >
-          <Tab.Screen name="Home" component={PhoneDisplay} 
+          <Tab.Screen name="Home" component={Home} 
           options={{
             tabBarLabel: 'Home',
             tabBarIcon: () => (
@@ -61,7 +61,7 @@ const Tab = createBottomTabNavigator();
           }}
           />
 
-          <Tab.Screen name="Profile" component={Profile} 
+          <Tab.Screen name="Profile" component={Loading} 
           options={{
             tabBarLabel: 'Profile',
             tabBarIcon: () => (
