@@ -7,7 +7,9 @@ import PhoneCard from '../../PhoneCard';
 import CategoryCircles from '../../FrontPage/CategoryCircles';
 import CarouselMain from '../../FrontPage/CarouselMain';
 
-const FrontPage = ({ navigation } : { navigation: any}) => {
+const FrontPage = ({ navigation } : { navigation: any }) => {
+
+
    return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
