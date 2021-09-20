@@ -9,18 +9,27 @@ import Bids from './Tabs/Bids';
 import Profile from './Tabs/Profile';
 import Loading from './Loading';
 
-
+import iconChange from '../assets/iconChange';
 
 
 
 const Tab = createBottomTabNavigator();
  
  const Main = () => {
+
+   const [revomeTabsOnSearch, changeRemoveTabsOnSearch] = React.useState(false);
+
    return (
-  <Tab.Navigator screenOptions={{
+  <Tab.Navigator 
+       tabBarHideOnKeyboard={true}
+       screenOptions={({ route } : { route: any}) => ({
+            tabBarIcon: ({ focused, color, size } : {focused: boolean, color: string, size: number}) => { 
+              return iconChange(route.name,focused);
+          },
           headerShown: false,
-        }}
-        initialRouteName="Profile"   
+          tabBarStyle: { display: revomeTabsOnSearch ? 'none' : '' },
+        })}
+        initialRouteName="Home"   
         tabBarOptions={{
         activeTintColor: white,
         inactiveTintColor: 'lightgray',
@@ -33,41 +42,26 @@ const Tab = createBottomTabNavigator();
             }
           }}
         >
-          <Tab.Screen name="Home" component={Home} 
+          <Tab.Screen name="Home"  children={()=><Home changeRemoveTabsOnSearch={changeRemoveTabsOnSearch}/>}
           options={{
             tabBarLabel: 'Home',
-            tabBarIcon: () => (
-              <Ionicons name="home" size={20} color={white} />
-            ),
           }}
           />
           <Tab.Screen name="Phones" component={Phones} 
           options={{
             tabBarLabel: 'Phones',
-            tabBarIcon: () => (
-              <Ionicons 
-              name="phone-portrait" size={20} color={white} />
-            ),
           }}
           />
 
           <Tab.Screen name="Bids" component={Bids} 
           options={{
             tabBarLabel: 'Bids',
-            tabBarIcon: () => (
-              <Ionicons 
-              name="time" size={20} color={white} />
-            ),
           }}
           />
 
-          <Tab.Screen name="Profile" component={Loading} 
+          <Tab.Screen name="Profile" component={Profile} 
           options={{
             tabBarLabel: 'Profile',
-            tabBarIcon: () => (
-              <Ionicons 
-              name="person" size={20} color={white} />
-            ),
           }}
           />
     </Tab.Navigator>
