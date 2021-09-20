@@ -9,16 +9,17 @@ import Cart from './HomeStack/Cart';
 const Stack = createStackNavigator();
 
 
-const Home = () => {
+const Home = ({changeRemoveTabsOnSearch} : {changeRemoveTabsOnSearch: any}) => {
 
   return (
     <Stack.Navigator  
+    initialRouteName="Cart"   
     screenOptions={{
       headerShown: false
     }}>
       <Stack.Screen name="Home" component={FrontPage} />
-      <Stack.Screen name="Search" component={Search} />
-      <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Search"  children={(props: any) => <Search changeRemoveTabsOnSearch={changeRemoveTabsOnSearch} {...props} />} />
+      <Stack.Screen name="Cart" children={(props: any) => <Cart changeRemoveTabsOnSearch={changeRemoveTabsOnSearch} {...props} />} />
     </Stack.Navigator>
   );
 }
