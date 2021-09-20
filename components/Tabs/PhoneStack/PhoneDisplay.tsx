@@ -68,7 +68,8 @@ const PhoneDisplay = ({navigation} : {navigation: any}) => {
         </View>
         <SellerInfo/>
 
-        <PhoneContainer phones={[{},{},{}]} title="Related Phones" />
+        <PhoneContainer phones={[{image: "", name: "", description: "", price: ""},
+        {image: "", name: "", description: "", price: ""},{image: "", name: "", description: "", price: ""}]} title="Related Phones" />
       </View>
 
       <CustomModal modal={modal} changeModal={(value: boolean) => changeModal(value)}/>
