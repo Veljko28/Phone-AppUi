@@ -16,7 +16,7 @@ seller info ✅
 colored line ✅
 related phones ✅
 stack navigatior ✅
-search page
+search page design ✅
 cart page
 image scroll circles ✅
 modal pop-over ✅
@@ -29,4 +29,5 @@ bid cards
 review text error fix
 phone display header ✅
 brand images on category circles ✅
+remove bottom tabs on search ✅
 
