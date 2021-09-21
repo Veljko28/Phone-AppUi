@@ -1,7 +1,7 @@
 export interface Phone {
   image: any,
   name: string,
-  description: string,
+  description?: string,
   price: string | number,
 }
 
