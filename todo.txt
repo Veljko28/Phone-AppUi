@@ -17,7 +17,7 @@ colored line ✅
 related phones ✅
 stack navigatior ✅
 search page design ✅
-cart page
+cart page / cart items ✅ / cart delivery ✅
 image scroll circles ✅
 modal pop-over ✅
 settings / edit profile
