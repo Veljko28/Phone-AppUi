@@ -1,10 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import image from '../../../assets/phone.jpg';
 
 import {blue, white} from '../../../constants/CustomColors';
+
+import CartItemMap from './CartComps/CartItemMap';
+import Delivery from './CartComps/Delivery';
+
+
+import StepIndicator from 'react-native-step-indicator';
+import customStyles from './CartComps/StepIndicatorSettings';
+ 
+const labels = ["Cart","Delivery Address","Order Summary","Payment Method","Track"];
+const icons = ["shopping-cart", "location-on", "insert-chart", "credit-card", "track-changes"]
 
 const Cart = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeRemoveTabsOnSearch: any}) => {
 
@@ -12,17 +22,20 @@ const Cart = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeR
     changeRemoveTabsOnSearch(true);
   }, [])
 
+
   const itemsInCart = [
     {image, name: "Pixel 2 XL", price: 350},
     {image, name: "Pixel 2 XL", price: 350},
     {image, name: "Pixel 2 XL", price: 350},
   ]
 
+  const [step, changeStep] = React.useState(0);
+
   return (
     <View style={styles.container}> 
     
        <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.9} onPress={() => {  changeRemoveTabsOnSearch(false);                             navigation.navigate("Home") }} style={{marginTop: 10}} >
+        <TouchableOpacity activeOpacity={0.9} onPress={() => {  changeRemoveTabsOnSearch(false); navigation.navigate("Home") }} style={{marginTop: 10}} >
           <MaterialIcons name="arrow-back" size={20} color={blue} />
         </TouchableOpacity>
         <View>
@@ -31,6 +44,21 @@ const Cart = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeR
         <View> </View>
       </View>
 
+      <StepIndicator
+         customStyles={customStyles}
+         currentPosition={step}
+         labels={labels}
+         renderStepIndicator={({position,stepStatus})=>
+         (<MaterialIcons name={icons[position] as any} size={15} 
+         color={stepStatus === 'finished' ? white : blue} />)}
+    />
+
+      {step === 0 ? <CartItemMap itemsInCart={itemsInCart} /> : <Delivery/>}
+
+      <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => changeStep(step+1)}>
+        <Text style={styles.buttonText}>{step !== 4 ? "Next " : "Finish "} 
+        <MaterialIcons name={step !== 4 ? "arrow-forward-ios" : "check"} size={15} color={white} /></Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -45,11 +73,24 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 15,
     paddingBottom: 0,
-    marginTop: Constants.statusBarHeight
+    marginTop: Constants.statusBarHeight,
+    marginBottom: 10
   },
   title: {
     color: blue,
     fontSize: 25,
+  },
+  buttonText: {
+    color: white,
+    fontSize: 20
+  },
+  button: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    padding: 20,
+    backgroundColor: blue,
+    textAlign: 'center'
   }
 });
 
