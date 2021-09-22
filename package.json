@@ -26,13 +26,14 @@
     "@react-navigation/stack": "*",
     "@react-navigation/native": "6.0.0",
     "react-native-snap-carousel": "*",
+    "react-native-step-indicator": "*",
     "react-native-flatlist-slider": "*",
     "react-native-gesture-handler": "~1.10.2",
     "@react-navigation/bottom-tabs": "*",
     "react-native-image-slider-show": "*",
     "react-native-safe-area-context": "3.2.0",
-    "react-native-step-indicator": "*",
-    "react-native-country-picker-modal": "*"
+    "uuid": "*",
+    "react-native-masked-text": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
