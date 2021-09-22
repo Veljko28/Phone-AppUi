@@ -1,10 +1,12 @@
 import {createStore, combineReducers} from 'redux';
 import pageReducer from './reducers/pageReducers';
+import cartReducers from './reducers/cartReducers';
 
 const rootReducer = combineReducers({
-  pages: pageReducer
+  pages: pageReducer,
+  cart: cartReducers
 });
 
-const store = createStore(() => pageReducer);
+const store = createStore(rootReducer);
 
 export default store;

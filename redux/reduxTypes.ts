@@ -1,6 +1,11 @@
+import { CartForm } from '../constants/CustomTypes';
+
 export interface State {
   pages: {
     page: string
+  },
+  cart: {
+    form: CartForm
   }
 }
 
