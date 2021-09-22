@@ -1,40 +1,44 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
-import CountryPicker from 'react-native-country-picker-modal';
+import { View, Text, TextInput, StyleSheet, Picker } from 'react-native';
+import { CartForm } from '../../../../constants/CustomTypes';
 
-const Delievry = () => {
+const Delievry = ({form, changeForm} : {form: CartForm, changeForm: any}) => {
 
-  const [countryCode, changeCountryCode] = React.useState("RS");
-  const [country,changeCountry] = React.useState(null);
-
+  const [country,changeCountry] = React.useState("SRB");
+ 
+  
   return (
     <View style={{marginTop: 10}}>
       <View style={{flexDirection: 'row', margin: 10}}>
-        <TextInput placeholder="First Name" style={styles.smallInput} />
-        <TextInput placeholder="Last Name" style={styles.smallInput} />
+        <TextInput placeholder="First Name" style={styles.smallInput}  onChangeText={text => changeForm({...form, firstName: text})}/>
+        <TextInput placeholder="Last Name" style={styles.smallInput} onChangeText={text => changeForm({...form, lastName: text})} />
       </View>
 
       <View style={{margin: 10}}>
-        <TextInput placeholder="Address Line" style={styles.fullInput} />
+        <TextInput placeholder="Address Line" style={styles.fullInput} onChangeText={text => changeForm({...form, address: text})} />
       </View>
 
       <View style={{flexDirection: 'row', margin: 10}}>
-        <TextInput placeholder="Town / City" style={styles.smallInput} />
-        <TextInput placeholder="Post Code" style={styles.smallInput} />
+        <TextInput placeholder="Town / City" style={styles.smallInput} onChangeText={text => changeForm({...form, town: text})} />
+        <TextInput placeholder="Post Code" style={styles.smallInput}  onChangeText={text => changeForm({...form, postCode: text})}/>
       </View>
 
       <View style={{flexDirection: 'row', margin: 10}}>
         <Text style={styles.country}>Country: </Text>
-          <CountryPicker
-          countryCode={countryCode as any}
-          withFilter={true}
-          withFlag={true}
-          withCountryNameButton={true}
-          withEmoji={true}
-          onSelect={(country: any) => {
-          changeCountryCode(country.cca2); changeCountry(country)}}
-          visible
-      />
+        <Picker
+        selectedValue={country}
+        style={{ height: 50, width: 250, borderColor: '#eee', color: '#999' }}
+        onValueChange={(itemValue, itemIndex) => changeCountry(itemValue)}
+      >
+        <Picker.Item label=" 🇷🇸 Serbia" value="SRB" />
+        <Picker.Item label=" 🇬🇧 United Kingdom" value="UK" />
+        <Picker.Item label=" 🇷🇺 Russia" value="RU" />
+        <Picker.Item label=" 🇺🇸 United States" value="USA" />
+      </Picker>
+      </View>
+
+      <View style={{margin: 10}}>
+        <TextInput placeholder="Phone Number (*optional)" style={styles.fullInput} onChangeText={text => changeForm({...form, phoneNum: text})} />
       </View>
 
     </View>
