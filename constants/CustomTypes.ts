@@ -11,3 +11,12 @@ export interface ReviewItem {
   description: string,
   date: Date | string
 }
+
+export interface CartForm {
+    firstName: string,
+    lastName: string,
+    address: string,
+    town: string,
+    postCode: string,
+    phoneNum: string
+}
