@@ -13,7 +13,7 @@ const Home = ({changeRemoveTabsOnSearch} : {changeRemoveTabsOnSearch: any}) => {
 
   return (
     <Stack.Navigator  
-    initialRouteName="Cart"   
+    initialRouteName="Home"   
     screenOptions={{
       headerShown: false
     }}>

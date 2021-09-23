@@ -9,11 +9,19 @@ import PhoneContainer from '../../Phone/PhoneContainer'
 import ColoredLine from '../../../constants/ColoredLine';
 import CustomModal from '../CustomModal';
 import Constants from 'expo-constants';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../redux/actions/cartActions';
 
 
 const PhoneDisplay = ({navigation} : {navigation: any}) => {
 
   const [modal,changeModal] = React.useState(false);
+  const phoneModel = {
+    name: "Pixel XL 2",
+    price: "350$",
+    image: phone
+  };
+  const dispatch = useDispatch();
 
   return (
     <ScrollView style={styles.container}>
@@ -35,9 +43,9 @@ const PhoneDisplay = ({navigation} : {navigation: any}) => {
         <ImageCarousel />
 
         <View style={styles.infoRow}> 
-          <Text style={styles.phoneName}>Pixel XL 2</Text>
+          <Text style={styles.phoneName}>{phoneModel.name}</Text>
           <View></View>
-          <Text style={{color: green, fontSize: 25}}>350$</Text>
+          <Text style={{color: green, fontSize: 25}}>{phoneModel.price}</Text>
         </View>
         <Text style={{color: '#999', fontSize: 12, margin: 5, marginLeft: 20}}>Display 6.00-inch (1440x2880) · Processor Qualcomm Snapdragon 835 
           · Front Camera 8MP · Rear Camera 12.2MP · RAM 4GB · Storage 64GB · Battery 3520mAh</Text>
@@ -45,7 +53,10 @@ const PhoneDisplay = ({navigation} : {navigation: any}) => {
         <Text style={{color: blue, fontSize: 17, marginTop: 5, marginBottom: 8, alignSelf: 'flex-start', marginLeft: 20}}>
         <Ionicons name="heart" size={17} color={blue} style={{marginRight: 5}} /> Added to wish list: 4 times</Text>
 
-        <TouchableOpacity style={styles.cartButton} activeOpacity={0.9}>
+        <TouchableOpacity style={styles.cartButton} activeOpacity={0.9}
+        onPress={() => {
+          dispatch(addToCart(phoneModel));
+        }}>
               <Ionicons name="cart" size={20} color="white" />
               <Text style={{color: white, fontSize: 15, marginLeft: 5}}>ADD TO CART</Text>
         </TouchableOpacity>  
