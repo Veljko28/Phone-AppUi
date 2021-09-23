@@ -14,7 +14,7 @@ const CartItemMapping = ({x} : {x: Phone}) => {
       <Image source={x.image} style={styles.image} />
       <View>
         <Text style={styles.name}>{x.name}</Text>
-        <Text style={styles.price}>{x.price}$</Text>
+        <Text style={styles.price}>{x.price}</Text>
 
         <View style={styles.buttonContainer}>
         

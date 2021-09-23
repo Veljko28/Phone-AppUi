@@ -14,6 +14,7 @@ import CartItemMap from './CartComps/CartItemMap';
 import Delivery from './CartComps/Delivery';
 import OrderSummary from './CartComps/OrderSummary';
 import PaymentMethod from './CartComps/PaymentMethod';
+import Finish from './CartComps/Finish';
 
 
 import StepIndicator from 'react-native-step-indicator';
@@ -45,7 +46,8 @@ const Cart = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeR
 
 
 
-  const [step, changeStep] = React.useState(3);
+  const [step, changeStep] = React.useState(0);
+  const cartItems = useSelector((state: State) => state.cart.cartItems);
   const dispatch = useDispatch();
 
   return (
@@ -70,10 +72,18 @@ const Cart = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeR
          color={stepStatus === 'finished' ? white : blue} />)}
     />
 
-      {step === 0 ? <CartItemMap itemsInCart={itemsInCart} /> : step === 1 ? <Delivery form={form} changeForm={(value: CartForm) => changeForm(value)}/> : step === 2 ? <OrderSummary 
-      total={ itemsInCart.reduce((tot, record) =>  tot + record.price,0) }/> : <PaymentMethod/>}
+      {step === 0 ? <CartItemMap itemsInCart={cartItems} /> : step === 1 ? <Delivery form={form} changeForm={(value: CartForm) => changeForm(value)}/> : step === 2 ? <OrderSummary 
+      total={ itemsInCart.reduce((tot, record) =>  tot + record.price,0) }/> : step === 3 ? <PaymentMethod/> : 
+      <Finish/>}
 
       <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => {
+            if (step === 4) {
+              changeStep(0);
+              navigation.navigate("Home");  
+              return;
+            }
+
+
             changeStep(step+1);
             if (step === 1) dispatch(addCartForm(form));
         }}>
