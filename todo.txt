@@ -17,16 +17,18 @@ colored line ✅
 related phones ✅
 stack navigatior ✅
 search page design ✅
-cart page
+cart page ✅
 cart delivery ✅
 cart items  ✅
-cart summery 
+cart summery ✅
+cart payment method ✅
+redux cart form ✅
 cart delivery validation
 image scroll circles ✅
 modal pop-over ✅
 settings / edit profile
 user profile info
-redux add to cart functionality
+redux add to cart functionality ✅
 adding phones 
 adding bids
 bid cards
@@ -34,4 +36,9 @@ review text error fix
 phone display header ✅
 brand images on category circles ✅
 remove bottom tabs on search ✅
+
+mask on delivery address phone number
+remove from cart button
+cart button badge
+onclick cart to phone display
 
