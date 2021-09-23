@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
-import { TextInputMask } from 'react-native-masked-text'
+import { MaskedTextInput} from "react-native-mask-text";
 
 import visa from '../../../../assets/creditCards/visa.png';
 import mastercard from '../../../../assets/creditCards/mastercard.png';
@@ -10,6 +10,13 @@ import amex from '../../../../assets/creditCards/amex.png';
 
 
 const PaymentMethod = () => {
+
+  const [form, changeForm] = React.useState({
+    num: "",
+    exp: "",
+    holder: "",
+    cvc: ""
+  });
 
   return (
     <View>
@@ -23,8 +30,37 @@ const PaymentMethod = () => {
         <View>
         
           <View style={{flexDirection: 'row', margin: 10}}>
-            <TextInput placeholder="Card Number" style={styles.bigInput} />
-            <TextInput placeholder="Exp" style={styles.smallInput} />
+           <MaskedTextInput
+              mask="9999 9999 9999 9999"
+              onChangeText={(text, rawText) => {
+                changeForm({...form, num: rawText})
+              }}
+              style={styles.bigInput}
+              keyboardType="numeric"
+              placeholder="Card Number"
+            />
+            <MaskedTextInput
+              mask="99 / 99"
+              onChangeText={(text, rawText) => {
+                changeForm({...form, exp: rawText})
+              }}
+              style={styles.smallInput}
+              keyboardType="numeric"
+              placeholder="Expiry"
+            />
+          </View>
+
+              <View style={{flexDirection: 'row', margin: 10}}>
+            <TextInput placeholder="Card Holder" style={styles.bigInput} />
+            <MaskedTextInput
+              mask="999"
+              onChangeText={(text, rawText) => {
+                changeForm({...form, exp: rawText})
+              }}
+              style={styles.smallInput}
+              keyboardType="numeric"
+              placeholder="Cvc"
+            />
           </View>
 
 
@@ -39,13 +75,13 @@ const styles = StyleSheet.create({
     height: 45
   },
   bigInput: {
-    width: '80%',
+    width: '70%',
     borderColor: '#eee',
     borderWidth: 2,
     padding: 10
   },
   smallInput: {
-    width: '20%',
+    width: '30%',
     borderColor: '#eee',
     borderWidth: 2,
     padding: 10
