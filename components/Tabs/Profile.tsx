@@ -21,7 +21,7 @@ import Reviews from './ProfileComps/Reviews';
 import WishList from './ProfileComps/WishList';
 
 const Profile = () => {
-  const [page, changePage] = React.useState('Reviews');
+  const [page, changePage] = React.useState('Listings');
 
   const pagination = (value: string) => {
     changePage(value);
