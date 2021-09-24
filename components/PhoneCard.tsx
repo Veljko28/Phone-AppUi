@@ -1,31 +1,43 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import phone from '../assets/phone.jpg';
+import image from '../assets/phone.jpg';
 import { blue, green } from '../constants/CustomColors';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Phone } from '../constants/CustomTypes';
 
 
-const PhoneCard = ({onPress} : {onPress : () => any}) => {
-
+const PhoneCard = ({onPress, addToCart, removeFromCart, phone, inCart} : {onPress : () => any, addToCart: (phone: Phone) => any, 
+removeFromCart: (id: number | string) => any, phone: Phone, inCart: boolean}) => {
   return (
-    <TouchableOpacity activeOpacity={0.8} style={styles.card} onPress={() => onPress()}>
-      <Image source={phone} resizeMode="contain" style={styles.phoneImage}/>
-      <Text style={{marginTop: 5, color: blue, textAlign: 'center'}}>Pixel 2</Text>
-      <Text style={{marginTop: 5, color: green, textAlign: 'center'}}>350$</Text>
+    <View style={styles.card}>
+      <TouchableOpacity activeOpacity={0.8} onPress={() => onPress()}>
+        <Image source={image} resizeMode="contain" style={styles.phoneImage}/>
+        <Text style={{marginTop: 5, color: blue, textAlign: 'center'}}>{phone?.name}</Text>
+        <Text style={{marginTop: 5, color: green, textAlign: 'center'}}>{phone?.price}</Text>
+      </TouchableOpacity>
+
       <View style={styles.buttonContainer}>
 
         <TouchableOpacity activeOpacity={0.6}
          style={styles.wishListButton}>
-            <Ionicons name="heart" color="white" size={15}/>
+            <Ionicons name="heart-outline" color="white" size={15}/>
         </TouchableOpacity>
 
-        <TouchableOpacity activeOpacity={0.8}
+        {inCart ? (
+        <TouchableOpacity activeOpacity={0.8} onPress={() => removeFromCart(phone.id)}
+         style={styles.cartButton}>
+            <MaterialCommunityIcons name="cart-off" size={15} color="white" />
+        </TouchableOpacity>
+        ) : (
+        <TouchableOpacity activeOpacity={0.8} onPress={() => addToCart(phone)}
          style={styles.cartButton}>
             <Ionicons name="cart" color="white" size={15}/>
         </TouchableOpacity>
+        )}
 
       </View>
-    </TouchableOpacity>
+
+    </View>
   )
 }
 
