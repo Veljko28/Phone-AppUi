@@ -4,7 +4,11 @@ import Constants from 'expo-constants';
 import Header from '../../Header';
 import {white, blue} from '../../../constants/CustomColors';
 import PhoneCard from '../../PhoneCard';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeFromCart } from '../../../redux/actions/cartActions';
+import image from '../../../assets/phone.jpg';
+import { Phone } from '../../../constants/CustomTypes';
+import { State } from '../../../redux/reduxTypes';
 
 const PhoneList = ({navigation} : {navigation: any}) => {
 
@@ -13,16 +17,23 @@ const PhoneList = ({navigation} : {navigation: any}) => {
     [4,5,6],
     [7,8,9]
   ]
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state: State) => state.cart.cartItems);
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content"/>
       <Header navigate={(x: string) => navigation.navigate(x)}/>
       <Text style={styles.title}>Phones</Text>
-      {list.map(x => {
+      {list.map((x,idx) => {
         return (
-          <View style={styles.cardsContainer}>
-            {x.map(y => <PhoneCard onPress={() => navigation.navigate("Display")}/> )}
+          <View key={idx} style={styles.cardsContainer}>
+            {x.map(y => <PhoneCard inCart={cartItems.filter((x: Phone) => x.id === y).length > 0}
+             onPress={() => navigation.navigate("Display", {id: y})} phone={{id: y, name: "Pixel 2 XL", image, price: "350$"}} 
+             addToCart={(phone: Phone) => dispatch(addToCart(phone))}
+             removeFromCart={(id: number | string) => dispatch(removeFromCart(id))}
+             /> 
+              )}
           </View>
         )
       })}
