@@ -1,27 +1,35 @@
 import React from 'react';
 import {View, Text, Image,  StyleSheet, Dimensions, TouchableOpacity, ScrollView, StatusBar} from 'react-native';
 import phone from '../../../assets/phone.jpg';
-import { blue, green, white } from '../../../constants/CustomColors';
+import { blue, green, white, red } from '../../../constants/CustomColors';
 import ImageCarousel from '../../Display/ImageCarousel';
-import { MaterialIcons, Ionicons  } from '@expo/vector-icons'; 
+import { MaterialIcons, Ionicons, MaterialCommunityIcons  } from '@expo/vector-icons'; 
 import SellerInfo from '../../Display/SellerInfo';
 import PhoneContainer from '../../Phone/PhoneContainer'
 import ColoredLine from '../../../constants/ColoredLine';
 import CustomModal from '../CustomModal';
 import Constants from 'expo-constants';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../../redux/actions/cartActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeFromCart } from '../../../redux/actions/cartActions';
+import { State } from '../../../redux/reduxTypes';
+import { Phone } from '../../../constants/CustomTypes';
 
-
-const PhoneDisplay = ({navigation} : {navigation: any}) => {
+const PhoneDisplay = ({navigation, route} : {navigation: any, route: any}) => {
 
   const [modal,changeModal] = React.useState(false);
+  const id = route.params.id;
+  
   const phoneModel = {
+    id,
     name: "Pixel XL 2",
     price: "350$",
     image: phone
   };
   const dispatch = useDispatch();
+  const cartItems = useSelector((state: State) => state.cart.cartItems);
+  const [inCart, changeInCart] = React.useState(false);
+
+  React.useEffect( () =>  changeInCart( cartItems.filter((x: Phone) => x.id === id).length > 0 ), [cartItems, id])
 
   return (
     <ScrollView style={styles.container}>
@@ -53,13 +61,27 @@ const PhoneDisplay = ({navigation} : {navigation: any}) => {
         <Text style={{color: blue, fontSize: 17, marginTop: 5, marginBottom: 8, alignSelf: 'flex-start', marginLeft: 20}}>
         <Ionicons name="heart" size={17} color={blue} style={{marginRight: 5}} /> Added to wish list: 4 times</Text>
 
-        <TouchableOpacity style={styles.cartButton} activeOpacity={0.9}
-        onPress={() => {
-          dispatch(addToCart(phoneModel));
-        }}>
-              <Ionicons name="cart" size={20} color="white" />
-              <Text style={{color: white, fontSize: 15, marginLeft: 5}}>ADD TO CART</Text>
-        </TouchableOpacity>  
+        {inCart ? (
+
+          <TouchableOpacity style={styles.cartButtonRemove} activeOpacity={0.9}
+            onPress={() => {
+              dispatch(removeFromCart(id));
+            }}>
+                  <MaterialCommunityIcons name="cart-off" size={20} color="white" />
+                  <Text style={{color: white, fontSize: 15, marginLeft: 5}}>REMOVE FROM CART</Text>
+            </TouchableOpacity>  
+
+        ) : (
+
+            <TouchableOpacity style={styles.cartButton} activeOpacity={0.9}
+            onPress={() => {
+              dispatch(addToCart(phoneModel));
+            }}>
+                  <Ionicons name="cart" size={20} color="white" />
+                  <Text style={{color: white, fontSize: 15, marginLeft: 5}}>ADD TO CART</Text>
+            </TouchableOpacity>  
+
+        )}
 
 
         <View style={styles.categoryButtons}>
@@ -125,6 +147,16 @@ const styles = StyleSheet.create({
   },
   cartButton: {
     backgroundColor: green,
+    width: Dimensions.get('window').width-20,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    padding: 10
+  },
+  cartButtonRemove: {
+    backgroundColor: red,
     width: Dimensions.get('window').width-20,
     flex: 1,
     flexDirection: 'row',
