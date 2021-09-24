@@ -1,10 +1,17 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, Picker } from 'react-native';
 import { CartForm } from '../../../../constants/CustomTypes';
+import { MaskedTextInput } from "react-native-mask-text";
 
 const Delievry = ({form, changeForm} : {form: CartForm, changeForm: any}) => {
 
   const [country,changeCountry] = React.useState("SRB");
+  const phoneMasks = {
+    srb: "(+381) 999 999-9999",
+    ru: "(+7) 999 999 9999",
+    usa: "(+1) (999) 999-99-99",
+    uk: "(+44) (999) 999-99-99"
+  }
  
   
   return (
@@ -38,7 +45,15 @@ const Delievry = ({form, changeForm} : {form: CartForm, changeForm: any}) => {
       </View>
 
       <View style={{margin: 10}}>
-        <TextInput placeholder="Phone Number (*optional)" style={styles.fullInput} onChangeText={text => changeForm({...form, phoneNum: text})} />
+      <MaskedTextInput
+              mask={country === "SRB" ? phoneMasks.srb : country === "RU" ? phoneMasks.ru : country === "UK" ? phoneMasks.uk : phoneMasks.usa}
+              onChangeText={(text, rawText) => {
+                changeForm({...form, phoneNum: text})
+              }}
+              style={styles.fullInput}
+              keyboardType="numeric"
+              placeholder="Phone Number (*optional)"
+            />
       </View>
 
     </View>

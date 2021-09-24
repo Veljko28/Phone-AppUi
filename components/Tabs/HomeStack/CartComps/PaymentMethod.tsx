@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
-import { MaskedTextInput} from "react-native-mask-text";
+import { MaskedTextInput } from "react-native-mask-text";
 
 import visa from '../../../../assets/creditCards/visa.png';
 import mastercard from '../../../../assets/creditCards/mastercard.png';
