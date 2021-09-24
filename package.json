@@ -24,6 +24,7 @@
     "react-native-ratings": "*",
     "react-native-screens": "~3.4.0",
     "react-native-check-box": "*",
+    "react-native-mask-text": "*",
     "@react-navigation/stack": "*",
     "@react-navigation/native": "6.0.0",
     "react-native-masked-text": "*",
@@ -33,8 +34,7 @@
     "react-native-gesture-handler": "~1.10.2",
     "@react-navigation/bottom-tabs": "*",
     "react-native-image-slider-show": "*",
-    "react-native-safe-area-context": "3.2.0",
-    "react-native-mask-text": "*"
+    "react-native-safe-area-context": "3.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
