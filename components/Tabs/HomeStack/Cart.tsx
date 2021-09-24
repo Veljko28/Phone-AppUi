@@ -5,7 +5,7 @@ import Constants from 'expo-constants';
 import image from '../../../assets/phone.jpg';
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../../../redux/reduxTypes';
-import { addCartForm } from '../../../redux/actions/cartActions';
+import { addCartForm, clearCart } from '../../../redux/actions/cartActions';
 import { CartForm } from '../../../constants/CustomTypes';
 
 import {blue, white} from '../../../constants/CustomColors';
@@ -15,6 +15,8 @@ import Delivery from './CartComps/Delivery';
 import OrderSummary from './CartComps/OrderSummary';
 import PaymentMethod from './CartComps/PaymentMethod';
 import Finish from './CartComps/Finish';
+import EmptyCart from './CartComps/EmptyCart';
+
 
 
 import StepIndicator from 'react-native-step-indicator';
@@ -72,14 +74,22 @@ const Cart = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeR
          color={stepStatus === 'finished' ? white : blue} />)}
     />
 
-      {step === 0 ? <CartItemMap itemsInCart={cartItems} /> : step === 1 ? <Delivery form={form} changeForm={(value: CartForm) => changeForm(value)}/> : step === 2 ? <OrderSummary 
+      {cartItems.length === 0 ? <EmptyCart /> : step === 0 ? <CartItemMap itemsInCart={cartItems} /> : step === 1 ? <Delivery form={form} changeForm={(value: CartForm) => changeForm(value)}/> : step === 2 ? <OrderSummary 
       total={ itemsInCart.reduce((tot, record) =>  tot + record.price,0) }/> : step === 3 ? <PaymentMethod/> : 
       <Finish/>}
 
       <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => {
+            if (cartItems.length === 0 ) {
+              changeRemoveTabsOnSearch(false);
+              navigation.navigate("Home");
+              return;
+            }
+
+
             if (step === 4) {
               changeStep(0);
-              navigation.navigate("Home");  
+              navigation.navigate("Home");
+              dispatch(clearCart());
               return;
             }
 
@@ -87,8 +97,8 @@ const Cart = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeR
             changeStep(step+1);
             if (step === 1) dispatch(addCartForm(form));
         }}>
-        <Text style={styles.buttonText}>{step !== 4 ? "Next " : "Finish "} 
-        <MaterialIcons name={step !== 4 ? "arrow-forward-ios" : "check"} size={15} color={white} /></Text>
+        <Text style={styles.buttonText}>{cartItems.length === 0 ? "Back To Home " : step !== 4 ? "Next " : "Finish "} 
+        <MaterialIcons name={cartItems.length === 0 ? "home" : step !== 4 ? "arrow-forward-ios" : "check"} size={15} color={white} /></Text>
       </TouchableOpacity>
     </View>
   )
