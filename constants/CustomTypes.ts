@@ -1,4 +1,5 @@
 export interface Phone {
+  id: number | string,
   image: any,
   name: string,
   description?: string,
