@@ -1,14 +1,14 @@
 import {Action} from '../reduxTypes';
-import {CHANGE_PAGE} from '../actions/pageActions';
+import {TOGGLE_TABS} from '../actions/pageActions';
 
 const initState = {
-  page: "Home"
+  displayTabs: true
 }
 
 const pageReducer = (state = initState, action: Action) => {
   switch (action.type){
-    case CHANGE_PAGE:
-      return {...state, page: action.payload};
+    case TOGGLE_TABS:
+      return {...state, displayTabs: action.payload};
     default:
       return state;
   }
