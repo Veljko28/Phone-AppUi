@@ -26,13 +26,12 @@ redux cart form ✅
 cart delivery validation
 image scroll circles ✅
 modal pop-over ✅
-settings / edit profile
-user profile info
+user profile info ✅
 redux add to cart functionality ✅
 adding phones 
 adding bids
 bid cards
-review text error fix
+review text error fix ✅
 phone display header ✅
 brand images on category circles ✅
 remove bottom tabs on search ✅
@@ -47,6 +46,11 @@ empty cart ✅
 send id to phone display ✅
 remove from cart on phone card ✅
 remove from cart on display ✅
+
+profile stack ✅
+edit profile ✅
+contact info modal ✅
+fix tab hidding on screens
 
 
 
