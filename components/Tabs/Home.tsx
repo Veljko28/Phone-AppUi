@@ -9,7 +9,7 @@ import Cart from './HomeStack/Cart';
 const Stack = createStackNavigator();
 
 
-const Home = ({changeRemoveTabsOnSearch} : {changeRemoveTabsOnSearch: any}) => {
+const Home = () => {
 
   return (
     <Stack.Navigator  
@@ -18,8 +18,8 @@ const Home = ({changeRemoveTabsOnSearch} : {changeRemoveTabsOnSearch: any}) => {
       headerShown: false
     }}>
       <Stack.Screen name="Home" component={FrontPage} />
-      <Stack.Screen name="Search"  children={(props: any) => <Search changeRemoveTabsOnSearch={changeRemoveTabsOnSearch} {...props} />} />
-      <Stack.Screen name="Cart" children={(props: any) => <Cart changeRemoveTabsOnSearch={changeRemoveTabsOnSearch} {...props} />} />
+      <Stack.Screen name="Search"  component={Search} />
+      <Stack.Screen name="Cart" component={Cart} />
     </Stack.Navigator>
   );
 }
