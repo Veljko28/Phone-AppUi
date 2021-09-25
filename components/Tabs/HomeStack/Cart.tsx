@@ -25,11 +25,9 @@ import customStyles from './CartComps/StepIndicatorSettings';
 const labels = ["Cart","Delivery Address","Order Summary","Payment Method","Finish"];
 const icons = ["shopping-cart", "location-on", "insert-chart", "credit-card", "check"]
 
-const Cart = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeRemoveTabsOnSearch: any}) => {
+const Cart = ({navigation} : {navigation: any}) => {
 
- React.useEffect( () => {
-    changeRemoveTabsOnSearch(true);
-  }, [])
+ const dispatch = useDispatch();
 
 
   const itemsInCart = [
@@ -50,13 +48,12 @@ const Cart = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeR
 
   const [step, changeStep] = React.useState(0);
   const cartItems = useSelector((state: State) => state.cart.cartItems);
-  const dispatch = useDispatch();
 
   return (
     <View style={styles.container}> 
     
        <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.9} onPress={() => {  changeRemoveTabsOnSearch(false); navigation.navigate("Home") }} style={{marginTop: 10}} >
+        <TouchableOpacity activeOpacity={0.9} onPress={() => navigation.goBack()} style={{marginTop: 10}} >
           <MaterialIcons name="arrow-back" size={20} color={blue} />
         </TouchableOpacity>
         <View>
@@ -80,7 +77,6 @@ const Cart = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeR
 
       <TouchableOpacity activeOpacity={0.8} style={styles.button} onPress={() => {
             if (cartItems.length === 0 ) {
-              changeRemoveTabsOnSearch(false);
               navigation.navigate("Home");
               return;
             }
