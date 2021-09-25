@@ -4,21 +4,16 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import { blue, white } from '../../../constants/CustomColors';
 
-
-const Search = ({navigation, changeRemoveTabsOnSearch} : {navigation: any, changeRemoveTabsOnSearch: any}) => {
+const Search = ({navigation} : {navigation: any}) => {
 
   const history = [
     'iphone 7+', "redmi note 8", "samsung galaxy s10", "pocophone f2"
   ]
 
-  React.useEffect( () => {
-    changeRemoveTabsOnSearch(true);
-  }, [])
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity activeOpacity={0.9} onPress={() => {  changeRemoveTabsOnSearch(false); navigation.navigate("Home") }} style={{marginTop: 10}} >
+        <TouchableOpacity activeOpacity={0.9} onPress={() =>  navigation.goBack()} style={{marginTop: 10}} >
           <MaterialIcons name="arrow-back" size={20} color={blue} />
         </TouchableOpacity>
         <View>
