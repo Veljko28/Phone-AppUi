@@ -10,16 +10,30 @@ import Profile from './Tabs/Profile';
 import Loading from './Loading';
 
 import iconChange from '../assets/iconChange';
-
+import { useSelector } from 'react-redux';
+import { State } from '../redux/reduxTypes';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 
 const Tab = createBottomTabNavigator();
  
  const Main = () => {
 
-   const [revomeTabsOnSearch, changeRemoveTabsOnSearch] = React.useState(false);
+   const [tabVisible, changeTabVisible] = React.useState(true);
+   const [currentRouteName, changeCurrentRouteName] = React.useState("");
 
-   return (
+   React.useEffect( () => {
+     console.log(currentRouteName);
+     if (currentRouteName === "Search" || currentRouteName === "Cart" || currentRouteName === "Display" || currentRouteName === "Settings") {
+       changeTabVisible(false);
+     }
+     else if (tabVisible === false) {
+       changeTabVisible(true);
+     }
+     
+   }, [currentRouteName])
+
+  return (
   <Tab.Navigator 
        tabBarHideOnKeyboard={true}
        screenOptions={({ route } : { route: any}) => ({
@@ -27,7 +41,7 @@ const Tab = createBottomTabNavigator();
               return iconChange(route.name,focused);
           },
           headerShown: false,
-          tabBarStyle: { display: revomeTabsOnSearch ? 'none' : '' },
+          tabBarStyle: { display: tabVisible ? '' : 'none' },
         })}
         initialRouteName="Home"   
         tabBarOptions={{
@@ -42,15 +56,27 @@ const Tab = createBottomTabNavigator();
             }
           }}
         >
-          <Tab.Screen name="Home"  children={()=><Home changeRemoveTabsOnSearch={changeRemoveTabsOnSearch}/>}
-          options={{
-            tabBarLabel: 'Home',
-          }}
+          <Tab.Screen name="Home"  component={Home}
+             options={({ route } : {route: any}) => {
+                const routeName = getFocusedRouteNameFromRoute(route) ? getFocusedRouteNameFromRoute(route) : "";
+                
+                if (routeName !== "") {
+                 changeCurrentRouteName(routeName);
+               }
+
+               return {};
+           }}
           />
           <Tab.Screen name="Phones" component={Phones} 
-          options={{
-            tabBarLabel: 'Phones',
-          }}
+           options={({ route } : {route: any}) => {
+                const routeName = getFocusedRouteNameFromRoute(route) ? getFocusedRouteNameFromRoute(route) : "";
+                
+                if (routeName !== "") {
+                 changeCurrentRouteName(routeName);
+               }
+
+               return {};
+           }}
           />
 
           <Tab.Screen name="Bids" component={Bids} 
@@ -60,9 +86,15 @@ const Tab = createBottomTabNavigator();
           />
 
           <Tab.Screen name="Profile" component={Profile} 
-          options={{
-            tabBarLabel: 'Profile',
-          }}
+            options={({ route } : {route: any}) => {
+                const routeName = getFocusedRouteNameFromRoute(route) ? getFocusedRouteNameFromRoute(route) : "";
+                
+                if (routeName !== "") {
+                 changeCurrentRouteName(routeName);
+               }
+
+               return {};
+           }}
           />
     </Tab.Navigator>
    );
