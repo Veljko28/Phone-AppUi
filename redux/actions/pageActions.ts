@@ -1,7 +1,6 @@
-export const CHANGE_PAGE = "CHANGE_PAGE";
+export const TOGGLE_TABS = "TOGGLE_TABS";
 
-
-export const changePage = (page: string) => ({
-  type: CHANGE_PAGE,
-  payload: page
+export const toggleTabs = (shown: boolean) => ({
+  type: TOGGLE_TABS,
+  payload: shown
 })

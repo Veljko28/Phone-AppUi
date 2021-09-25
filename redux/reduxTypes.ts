@@ -2,7 +2,7 @@ import { CartForm, Phone } from '../constants/CustomTypes';
 
 export interface State {
   pages: {
-    page: string
+    displayTabs: boolean
   },
   cart: {
     form: CartForm,
